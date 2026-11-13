@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayed & Habiba</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .intro {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .continue-btn {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: transparent;
+      border: 1px solid #505317;
+      color: #505317;
+      padding: 14px 45px;
+      font-size: 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .continue-btn:hover {
+      background: #435830;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="intro">
+
+    <video autoplay muted playsinline preload="auto">
+      <source src="your-video.mp4" type="video/mp4">
+    </video>
+
+    <button class="continue-btn" onclick="continueToWebsite()">
+      Continue
+    </button>
+
+  </div>
+
+  <script>
+    function continueToWebsite() {
+      window.location.href = "https://zekra.link/sayed-habiba";
+    }
+  </script>
+
+</body>
+</html>
