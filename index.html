@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sayed & Habiba</title>
+  <title>Welcome</title>
 
   <style>
     * {
@@ -13,18 +13,11 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
       background: #000;
-    }
-
-    .intro {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
     }
 
     video {
@@ -35,45 +28,52 @@
     }
 
     .continue-btn {
-      position: absolute;
+      position: fixed;
       bottom: 8%;
       left: 50%;
       transform: translateX(-50%);
       background: transparent;
-      border: 1px solid #505317;
-      color: #505317;
+      border: 1px solid #435830;
+      color: #435830;
       padding: 14px 45px;
       font-size: 16px;
       letter-spacing: 2px;
       cursor: pointer;
-      transition: 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease;
     }
 
-    .continue-btn:hover {
-      background: #435830;
-      color: white;
+    .continue-btn.show {
+      opacity: 1;
+      visibility: visible;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="intro">
+  <video id="introVideo" autoplay muted playsinline preload="auto">
+    <source src="Intros.mp4" type="video/mp4">
+  </video>
 
-    <video autoplay muted playsinline preload="auto">
-      <source src="Intros.mp4" type="video/mp4">
-    </video>
-
-    <button class="continue-btn" onclick="continueToWebsite()">
-      Continue
-    </button>
-
-  </div>
+  <button id="continueBtn" class="continue-btn">
+    Continue
+  </button>
 
   <script>
-    function continueToWebsite() {
+    const video = document.getElementById("introVideo");
+    const continueBtn = document.getElementById("continueBtn");
+
+    // Show Continue only after the video ends
+    video.addEventListener("ended", () => {
+      continueBtn.classList.add("show");
+    });
+
+    // Redirect to Zekra website
+    continueBtn.addEventListener("click", () => {
       window.location.href = "https://zekra.link/sayed-habiba";
-    }
+    });
   </script>
 
 </body>
