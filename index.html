@@ -53,40 +53,44 @@
 
 <body>
 
+  <!-- Intro Video -->
   <video id="introVideo" autoplay muted playsinline preload="auto">
     <source src="Intros.mp4" type="video/mp4">
   </video>
 
+  <!-- Background Music -->
   <audio id="bgMusic" preload="auto">
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
+  <!-- Continue Button -->
   <button id="continueBtn" class="continue-btn">
     Continue
   </button>
 
   <script>
-  
-const video = document.getElementById("introVideo");
-const music = document.getElementById("bgMusic");
-const continueBtn = document.getElementById("continueBtn");
+    const video = document.getElementById("introVideo");
+    const music = document.getElementById("bgMusic");
+    const continueBtn = document.getElementById("continueBtn");
 
-// Show Continue only after the video ends
-video.addEventListener("ended", () => {
-  continueBtn.classList.add("show");
-});
+    // Show Continue only after the video ends
+    video.addEventListener("ended", () => {
+      continueBtn.classList.add("show");
+    });
 
-// Start music and redirect when Continue is clicked
-continueBtn.addEventListener("click", async () => {
-  try {
-    music.volume = 0.7;
-    await music.play();
-  } catch (error) {
-    console.log("Music playback failed:", error);
-  }
+    // Start music and redirect when Continue is clicked
+    continueBtn.addEventListener("click", async () => {
 
-  window.location.href = "https://zekra.link/sayed-habiba";
-});
+      music.volume = 0.7;
+
+      try {
+        await music.play();
+      } catch (error) {
+        console.log("Music playback failed:", error);
+      }
+
+      window.location.href = "https://zekra.link/sayed-habiba";
+    });
 
   </script>
 
