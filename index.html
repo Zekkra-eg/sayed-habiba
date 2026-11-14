@@ -48,6 +48,10 @@
       opacity: 1;
       visibility: visible;
     }
+
+    .continue-btn:disabled {
+      cursor: wait;
+    }
   </style>
 </head>
 
@@ -78,7 +82,7 @@
       continueBtn.classList.add("show");
     });
 
-    // Open invitation in a new tab after 1 second
+    // Open a new tab and redirect after 1 second
     continueBtn.addEventListener("click", () => {
 
       // Prevent multiple clicks
@@ -86,25 +90,24 @@
 
       // Start background music
       music.volume = 0.7;
-
       music.play().catch(error => {
         console.log("Music playback failed:", error);
       });
 
-      // Wait 1 second before opening the invitation
-      setTimeout(() => {
-        const newTab = window.open(
-          "https://zekra.link/sayed-habiba",
-          "_blank",
-          "noopener,noreferrer"
-        );
+      // Open new tab immediately
+      const newTab = window.open("about:blank", "_blank");
 
-        if (!newTab) {
-          continueBtn.disabled = false;
-          alert("Please allow pop-ups to open the invitation.");
-        }
+      if (newTab) {
 
-      }, 1000);
+        // Redirect after 1 second
+        setTimeout(() => {
+          newTab.location.href = "https://zekra.link/sayed-habiba";
+        }, 1000);
+
+      } else {
+        continueBtn.disabled = false;
+        alert("Please allow pop-ups to open the invitation.");
+      }
 
     });
 
