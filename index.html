@@ -78,8 +78,14 @@
       continueBtn.classList.add("show");
     });
 
-    // Start music and redirect when Continue is clicked
+    // Open invitation in a new tab and play music
     continueBtn.addEventListener("click", async () => {
+
+      window.open(
+        "https://zekra.link/sayed-habiba",
+        "_blank",
+        "noopener,noreferrer"
+      );
 
       music.volume = 0.7;
 
@@ -89,7 +95,6 @@
         console.log("Music playback failed:", error);
       }
 
-      window.location.href = "https://zekra.link/sayed-habiba";
     });
 
   </script>
