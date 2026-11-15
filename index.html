@@ -42,15 +42,13 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.8s ease;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .continue-btn.show {
       opacity: 1;
       visibility: visible;
-    }
-
-    .continue-btn:disabled {
-      cursor: wait;
     }
   </style>
 </head>
@@ -63,52 +61,51 @@
   </video>
 
   <!-- Background Music -->
-  <audio id="bgMusic" preload="auto">
+  <audio id="bgMusic" preload="auto" loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Continue Button -->
-  <button id="continueBtn" class="continue-btn">
+  <!-- Continue Link -->
+  <a
+    id="continueBtn"
+    class="continue-btn"
+    href="https://zekra.link/sayed-habiba"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     Continue
-  </button>
+  </a>
 
   <script>
     const video = document.getElementById("introVideo");
     const music = document.getElementById("bgMusic");
     const continueBtn = document.getElementById("continueBtn");
 
+    // Start music on first user interaction
+    let musicStarted = false;
+
+    function startMusic() {
+      if (musicStarted) return;
+
+      music.volume = 0.7;
+
+      music.play().then(() => {
+        musicStarted = true;
+        console.log("Music started successfully");
+      }).catch(error => {
+        console.log("Music playback failed:", error);
+      });
+    }
+
+    // Listen for the first user interaction
+    document.addEventListener("click", startMusic);
+    document.addEventListener("touchstart", startMusic);
+    document.addEventListener("scroll", startMusic);
+    document.addEventListener("keydown", startMusic);
+
     // Show Continue only after the video ends
     video.addEventListener("ended", () => {
       continueBtn.classList.add("show");
-    });
-
-    // Open a new tab and redirect after 1 second
-    continueBtn.addEventListener("click", () => {
-
-      // Prevent multiple clicks
-      continueBtn.disabled = true;
-
-      // Start background music
-      music.volume = 0.7;
-      music.play().catch(error => {
-        console.log("Music playback failed:", error);
-      });
-
-      // Open new tab immediately
-      const newTab = window.open("about:blank", "_blank");
-
-      if (newTab) {
-
-        // Redirect after 1 second
-        setTimeout(() => {
-          newTab.location.href = "https://zekra.link/sayed-habiba";
-        }, 1000);
-
-      } else {
-        continueBtn.disabled = false;
-        alert("Please allow pop-ups to open the invitation.");
-      }
-
     });
 
   </script>
